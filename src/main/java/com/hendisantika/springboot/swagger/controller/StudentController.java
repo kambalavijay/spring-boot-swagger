@@ -1,7 +1,6 @@
 package com.hendisantika.springboot.swagger.controller;
 
 import com.hendisantika.springboot.swagger.model.Student;
-import com.hendisantika.springboot.swagger.service.StudentService;
 import io.swagger.annotations.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,8 +22,8 @@ import java.util.List;
 public class StudentController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
-    private StudentService studentService;
+    //@Autowired
+   // private StudentService studentService;
 
     @ApiOperation(value = "Get All Student", produces = "application/json")
     @RequestMapping(value = "/all", method = RequestMethod.GET)
@@ -32,7 +31,6 @@ public class StudentController {
         logger.debug("Getting All students ......");
         List<Student> student = null;
         try {
-            student = studentService.getAll();
             logger.debug("Getting All students ...... ::");
         } catch (Exception ex) {
             logger.error("Error occurred in searchStudentById >>", ex, ex.getMessage());
@@ -51,7 +49,7 @@ public class StudentController {
         logger.debug("Searching for student with studentId ::" + studentId);
         Student student = null;
         try {
-            student = studentService.getStudentById(studentId);
+           // student = studentService.getStudentById(studentId);
             logger.debug("Student found with studentId ::" + studentId);
         } catch (Exception ex) {
             logger.error("Error occurred in searchStudentById >>", ex, ex.getMessage());
@@ -68,7 +66,7 @@ public class StudentController {
                     required = true) @PathVariable Integer age) {
         List<Student> studentList = null;
         try {
-            studentList = studentService.filterByAge(age);
+            //studentList = studentService.filterByAge(age);
         } catch (Exception ex) {
             logger.error("Error occurred in filterStudentsByAge >>", ex, ex.getMessage());
             return new ResponseEntity<Object>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -83,7 +81,7 @@ public class StudentController {
             @PathVariable String cityName) {
         List<Student> studentList = null;
         try {
-            studentList = studentService.filterByCity(cityName);
+            //studentList = studentService.filterByCity(cityName);
         } catch (Exception ex) {
             logger.error("Error occurred in filterStudentsByCity >>", ex, ex.getMessage());
             return new ResponseEntity<Object>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -103,7 +101,7 @@ public class StudentController {
 
         List<Student> studentList = null;
         try {
-            studentList = studentService.filterByAgeAndCity(age, cityName);
+            //studentList = studentService.filterByAgeAndCity(age, cityName);
         } catch (Exception ex) {
             logger.error("Error occurred in filterStudentsByAgeAndCity >>", ex, ex.getMessage());
             return new ResponseEntity<Object>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
